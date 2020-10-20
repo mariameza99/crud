@@ -4,6 +4,7 @@
 	<title></title>
 </head>
 <body>
-	<h1>Hola mundo! <?= $id ?> </h1>
+	<h1>Hola {{ $name ?? '' }} {{ $lastName ?? '' }}</h1>
+    <p>{{ $text ?? '' }}</p>
 </body>
 </html>
