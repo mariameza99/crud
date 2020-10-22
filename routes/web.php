@@ -26,3 +26,7 @@ Route::get('/users/{id?}', function ($id = '0') {
 })->where('id','[0-9A-Za-z]+');
 
 Route::get('/contact', 'webController@contact');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
