@@ -1,0 +1,45 @@
+[
+	{
+		"title": "Parasite",
+		"description": "Tanto Gi Taek como su familia están sin trabajo. Cuando su hijo mayor", 
+		"classification": "B15",
+		"minutes": 132,
+		"year": 2019,
+		"cover": "movie.png",
+		"trailer":"https://www.youtube.com/watch?v=6JLC7TJ56qU",
+		"category_id": 4
+	},
+
+	{
+		"title": "Película 2",
+		"description": "Tanto Gi Taek como su familia están sin trabajo. Cuando su hijo mayor", 
+		"classification": "B15",
+		"minutes": 132,
+		"year": 2019,
+		"cover": "movie.png",
+		"trailer":"https://www.youtube.com/watch?v=6JLC7TJ56qU",
+		"category_id": 2
+	},
+
+	{
+		"title": "Película 3",
+		"description": "Tanto Gi Taek como su familia están sin trabajo. Cuando su hijo mayor", 
+		"classification": "B15",
+		"minutes": 132,
+		"year": 2019,
+		"cover": "movie.png",
+		"trailer":"https://www.youtube.com/watch?v=6JLC7TJ56qU",
+		"category_id": 1
+	},
+
+	{
+		"title": "Película 4",
+		"description": "Tanto Gi Taek como su familia están sin trabajo. Cuando su hijo mayor", 
+		"classification": "B15",
+		"minutes": 132,
+		"year": 2019,
+		"cover": "movie.png",
+		"trailer":"https://www.youtube.com/watch?v=6JLC7TJ56qU",
+		"category_id": 3
+	}
+]
