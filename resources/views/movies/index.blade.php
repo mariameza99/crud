@@ -15,6 +15,7 @@
                         <th scope="col">Classification</th>
                         <th scope="col">Minutes</th>
                         <th scope="col">Year</th>
+                        <th scope="col">Category</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,6 +26,7 @@
                         <td>{{ $movie->classification }}</td>
                         <td>{{ $movie->minutes }}</td>
                         <td>{{ $movie->year }}</td>
+                        <td>{{ $movie->category->name }}</td>
                         </tr>
                         @endforeach
                         @endif

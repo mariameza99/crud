@@ -17,4 +17,8 @@ class Movie extends Model
     	'trailer',
     	'category_id',
     ];
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
 }
