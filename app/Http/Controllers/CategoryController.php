@@ -69,9 +69,18 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
-        //
+        $category = Category::find($request['id']);
+
+        if ($category) {
+            if ($category->update($request->all())) {
+                
+                return redirect()->back();
+            }
+        }
+
+        return redirect()->back();
     }
 
     /**

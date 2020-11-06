@@ -32,6 +32,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth'])->group(function() {
+
     Route::get('/movies','MovieController@index');
+
     Route::get('/categories','CategoryController@index');
+    Route::put('/categories','CategoryController@update');
+
 });
