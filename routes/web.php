@@ -37,5 +37,7 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/categories','CategoryController@index');
     Route::put('/categories','CategoryController@update');
+    Route::post('/categories','CategoryController@store');
+    Route::delete('/categories','CategoryController@destroy');
 
 });
