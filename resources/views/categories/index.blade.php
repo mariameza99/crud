@@ -15,7 +15,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Add a new category</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -187,7 +187,7 @@
                         swal("Poof! Your record has been deleted!", {
                           icon: "success",
                         });
-                        $(target).parent().parent().parent().parent().parent().remove();
+                        $(target).parent().parent().parent().parent().remove();
                     }else{
                         swal("Error ocurred", {
                           icon: "error",
