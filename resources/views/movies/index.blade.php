@@ -30,7 +30,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Movie title" name="title">
+                                    <input type="text" class="form-control" placeholder="Movie title" id="title" name="title">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -39,21 +39,18 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                     </div>
-                                <textarea class="form-control" rows="5" placeholder="Description of the movie" name="description"  required=""></textarea>
+                                <textarea class="form-control" rows="5" placeholder="Description of the movie" name="description" id="description"  required=""></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Classification</label>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">@</span>
-                                    </div>
-                                    <select name="classification" class="form-control">
-                                        <option value="">AA</option>
-                                        <option value="">A</option>
-                                        <option value="">B</option>
-                                        <option value="">B15</option>
-                                        <option value="">C</option>
-                                        <option value="">D</option>
+                                    <select name="classification" id="classification" class="form-control">
+                                        <option value="AA">AA</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="B15">B15</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
                                     </select>
                                 </div>
                             </div>
@@ -63,7 +60,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                     </div>
-                                    <input type="number" class="form-control" placeholder="90" name="minutes">
+                                    <input type="number" class="form-control" placeholder="90" id="minutes" name="minutes">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -72,7 +69,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                     </div>
-                                    <input type="number" class="form-control" placeholder="2020" name="year">
+                                    <input type="number" class="form-control" placeholder="2020" id="year" name="year">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -81,7 +78,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                     </div>
-                                    <input type="file" class="form-control" name="cover">
+                                    <input type="file" class="form-control" id="cover" name="cover">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -90,7 +87,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Trailer example" name="trailer">
+                                    <input type="text" class="form-control" placeholder="Trailer example" id="trailer" name="trailer">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -99,7 +96,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                     </div>
-                                    <select name="category_id" class="form-control">
+                                    <select name="category_id" class="form-control" id="category">
                                     @if (isset($categories) && count($categories)>0)
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">
@@ -133,6 +130,7 @@
                         <th scope="col">Minutes</th>
                         <th scope="col">Year</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -144,6 +142,14 @@
                         <td>{{ $movie->minutes }}</td>
                         <td>{{ $movie->year }}</td>
                         <td>{{ $movie->category->name }}</td>
+                        <td><div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a onclick="edit('{{ $movie->id }}')" data-toggle="modal" data-target="#editMovie" class="dropdown-item" href="#">Edit Movie</a>
+                            </div>
+                            </div></td>
                         </tr>
                         @endforeach
                         @endif
@@ -152,4 +158,68 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="editMovie" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form method="post" action="{{ url('categories') }}" onsubmit="">
+        @csrf
+        @method('PUT') 
+        <div class="modal-body">
+        
+        <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">@</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Category example" aria-label="Category example" aria-describedby="basic-addon1" id="name" name="name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Description</label>
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">@</span>
+            </div>
+            <textarea class="form-control" rows="5" placeholder="Description of the category" name="description" id="description" required=""></textarea>
+        </div>
+
+        </div>
+
+        <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+         <button type="submit" class="btn btn-primary">Update data</button>
+         <input type="hidden" name="id" id="id">
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<x-slot name="scripts">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script type="text/javascript">
+            
+         function editMovie(id){
+             axios.get('{{ url('movies-info') }}/'+id)
+             .then(function (response){
+                 var data = response.data;
+             })
+         }   
+
+        </script>
+    </x-slot>
+
 </x-app-layout>
