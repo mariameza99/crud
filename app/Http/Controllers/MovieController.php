@@ -77,11 +77,11 @@ class MovieController extends Controller
      */
     public function get(Movie $movie)
     {
-        if($movie){
+        if ($movie) {
             return response()->json([
                 'message' => 'Registro consultado correctamente',
                 'code' => '200',
-                'movie' => '$movie'
+                'movie' => $movie
             ]);
         }
         return response()->json([
@@ -100,7 +100,27 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+        if ($movie) {
+            if ($movie->update($request->all())) {
+
+                if ($request->hasFile('cover_file')) {
+
+                    $file = $request->file('cover_file');
+                    $file_name = 'cover_movie'.$movie->id.'.'.$file->getClientOriginalExtension();
+
+                    $path = $request->file('cover_file')->storeAs(
+                        'img', $file_name
+                    );
+
+                    $movie->cover = $file_name;
+                    $movie->save(); 
+
+                }
+
+                return redirect()->back();
+            }
+        }
+        return redirect()->back();
     }
 
     /**
