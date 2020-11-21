@@ -38,9 +38,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         if($category = Category::create($request->all())) {
-            return redirect()->back();
+            return redirect()->back()->with('success','El registro se ha creado correctamente');
         }
-        return redirect()->back();
+        return redirect()->back()->with('error','No se pudo crear el registro correctamente');
     }
 
     /**
@@ -79,11 +79,11 @@ class CategoryController extends Controller
         if ($category) {
             if ($category->update($request->all())) {
                 
-                return redirect()->back();
+                return redirect()->back()->with('success','El registro se ha actualizado correctamente');
             }
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('error','No se pudo actualizar el registro correctamente');;
     }
 
     /**
